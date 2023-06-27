@@ -18,6 +18,14 @@ public class Eleicao {
 
     }
 
+    public Eleicao(String toString, String nome, String descricao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Eleicao(String nome, String descricao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getId() {
         return id;
     }
@@ -45,5 +53,9 @@ public class Eleicao {
    
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Object getNome() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

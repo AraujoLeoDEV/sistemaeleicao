@@ -6,7 +6,8 @@
 package Views;
 
 import Models.Eleicao;
-import Services.Conexao;
+import Services.ConexaoMongo;
+
 import java.awt.HeadlessException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -69,6 +70,12 @@ public class CriarEleicao extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
         jPanel1.setForeground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
 
+        edtDescricaoNovaEleicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtDescricaoNovaEleicaoActionPerformed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         jLabel2.setText("Descricao da Eleição");
@@ -130,7 +137,7 @@ public class CriarEleicao extends javax.swing.JInternalFrame {
                 .addComponent(edtDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCriarEleicao)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,9 +162,13 @@ public class CriarEleicao extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void edtDescricaoNovaEleicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDescricaoNovaEleicaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtDescricaoNovaEleicaoActionPerformed
+
     
     public void criarNovaEleicao(){
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
         if (edtDescricaoNovaEleicao.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "O campo de descrição da eleição não pode estar vazio !", "Atenção !", JOptionPane.WARNING_MESSAGE);
           return;

@@ -26,13 +26,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
 
 
 /**
  *
  * @author Altimar
  */
-public class Conexao  {  
+
+
+
+
+
+
+public class Conexao {  
     public static final String DRIVER = "org.sqlite.JDBC";
     public static final String JDBC_URL = "jdbc:sqlite:C:/Users/Administrator/Documents/teste.db";
     private static Connection connection = null;
@@ -61,6 +70,12 @@ public class Conexao  {
         
         
     }
+    
+   
+    
+    
+    
+    
     
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         if(connection == null){

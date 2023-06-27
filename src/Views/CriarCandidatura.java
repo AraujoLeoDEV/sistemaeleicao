@@ -8,7 +8,8 @@ package Views;
 import Models.Candidatura;
 import Models.Eleicao;
 import Models.Usuario;
-import Services.Conexao;
+import Services.ConexaoMongo;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
@@ -21,7 +22,7 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
     private Integer campusid;
     public TreeMap<String, Integer> candidatosMap = new TreeMap<>();
     public TreeMap<String, Integer> eleicoesMap = new TreeMap<>();
-    Conexao con;
+    ConexaoMongo con;
     public CriarCandidatura() {
         initComponents();
     }
@@ -52,7 +53,6 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
 
         setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.highlight")));
         setClosable(true);
-        setOpaque(true);
         setPreferredSize(new java.awt.Dimension(564, 567));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -88,10 +88,10 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
 
         edtCodigo.setFont(new java.awt.Font("Malgun Gothic", 0, 18)); // NOI18N
         edtCodigo.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 edtCodigoInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         edtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -132,6 +132,11 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
 
         cbxCandidato.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         cbxCandidato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECIONE UM CANDIDATO -" }));
+        cbxCandidato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCandidatoActionPerformed(evt);
+            }
+        });
 
         lblInformeOEleitor.setFont(new java.awt.Font("Malgun Gothic", 0, 16)); // NOI18N
         lblInformeOEleitor.setForeground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
@@ -203,7 +208,7 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbxEleicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCriarCandidatura)
                 .addContainerGap())
         );
@@ -229,7 +234,7 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
 
     private void btnVerificarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarCodigoActionPerformed
  
-        con = new Conexao();
+        con = new ConexaoMongo();
         
         if (!edtCodigo.getText().matches("[0-9]+")) {
             JOptionPane.showMessageDialog(rootPane, "Somente números são permitidos no código do candidato", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -270,7 +275,7 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
             return;
         }
         
-        con = new Conexao();
+        con = new ConexaoMongo();
 
         Eleicao eleicaoCandidato = new Eleicao(null, "", null, null);
         
@@ -290,9 +295,13 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_edtCodigoInputMethodTextChanged
 
+    private void cbxCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCandidatoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxCandidatoActionPerformed
+
     public void preencherCombBoxEleicao() {
         
-        con = new Conexao();
+        con = new ConexaoMongo();
 
         eleicoesMap = con.getComboBoxEleicao(this.usuarioLogado.getCampusId());
         cbxEleicao.removeAllItems();
@@ -308,7 +317,7 @@ public class CriarCandidatura extends javax.swing.JInternalFrame {
     
     public void preencherCombBoxCandidato () {
         
-        con = new Conexao();
+        con = new ConexaoMongo();
         candidatosMap =con.getComboBoxUsuariosCandidatos(getCampusid());
 
         cbxCandidato.removeAllItems();

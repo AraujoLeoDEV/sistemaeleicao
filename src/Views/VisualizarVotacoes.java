@@ -6,20 +6,21 @@
 package Views;
 
 import Models.Usuario;
-import Services.Conexao;
+import Services.ConexaoMongo;
+
 /**
  *
  * @author Altimar
  */
 public class VisualizarVotacoes extends javax.swing.JInternalFrame {
 
-    private Conexao con;
+    private ConexaoMongo con;
     private Usuario usuarioLogado;
     public VisualizarVotacoes() {
         initComponents();
         btnRegistroVotos.setVisible(false);
 
-        con = new Conexao();
+        con = new ConexaoMongo();
         inicializarTabela();
 
     }
@@ -649,7 +650,7 @@ public class VisualizarVotacoes extends javax.swing.JInternalFrame {
     /**
      * @return the con
      */
-    public Conexao getCon() {
+    public ConexaoMongo getCon() {
         return con;
     }
 }

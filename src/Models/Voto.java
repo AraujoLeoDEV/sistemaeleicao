@@ -13,4 +13,8 @@ public class Voto {
         this.datahora = LocalDate.now();
         
     }   
+
+    public Object getCandidatura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

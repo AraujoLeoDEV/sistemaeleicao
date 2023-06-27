@@ -8,7 +8,8 @@ package Views;
 
 
 import Models.Usuario;
-import Services.Conexao;
+import Services.ConexaoMongo;
+
 import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.JDesktopPane;
@@ -460,7 +461,7 @@ public class ConfiguracaoAdmin extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "É necessário escolher um usuario para edição !!", "Atenção !!", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
         
        Usuario usuarioEdicao = con.getUsuario(new Integer(tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 0).toString()));
        
@@ -515,7 +516,7 @@ public class ConfiguracaoAdmin extends javax.swing.JInternalFrame {
             return;
         }
         
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
         
         con.excluirEleicao(new Integer(tblEleicoes.getModel().getValueAt(tblEleicoes.getSelectedRow(), 0).toString()));
         
@@ -567,7 +568,7 @@ public class ConfiguracaoAdmin extends javax.swing.JInternalFrame {
     }
     
     public void excluirUsuario(Integer usuarioid){
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
 
         con.excluirUsuario(usuarioid);
         pesquisarTabelas(campusMap.get(cbxCampus.getSelectedItem().toString()));     
@@ -659,7 +660,7 @@ public class ConfiguracaoAdmin extends javax.swing.JInternalFrame {
     
     public void preencherCombBoxDescricao () {
         
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
 
         campusMap = con.getComboBoxCampus();
 
@@ -678,7 +679,7 @@ public class ConfiguracaoAdmin extends javax.swing.JInternalFrame {
     
     public void pesquisarTabelas(Integer campusid){
 
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
 
         tblEleicoes.setModel(con.getTableEleicaoComCampus(campusid));
         tblEleicoes.removeColumn(tblEleicoes.getColumnModel().getColumn(0));

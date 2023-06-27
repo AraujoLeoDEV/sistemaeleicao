@@ -9,7 +9,7 @@ import Models.Administrador;
 import Models.Aluno;
 import Models.Usuario;
 import Models.Visitante;
-import Services.Conexao;
+import Services.ConexaoMongo;
 import javax.swing.JOptionPane;
 
 /**
@@ -295,7 +295,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
     public void criarUsuario(){
         Boolean result= false;
         
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
        
         switch (getTipousuario()){
             case 0: result = con.criarUsuario(new Administrador(0, edtNomeUsuario.getText(), Integer.valueOf(spnIdade.getValue().toString()),edtCPFUsuario.getText(),
@@ -318,7 +318,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
     public void editarUsuario(){
         Boolean result= false;
         
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
         this.usuarioEdicao.setNome(edtNomeUsuario.getText());
         this.usuarioEdicao.setCPF(edtCPFUsuario.getText());
         this.usuarioEdicao.setIdade((int) spnIdade.getValue());
@@ -336,7 +336,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
     }
     
     public void getDesricaoCampus(){ 
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
 
         String descricaocampus = con.getDescricaoCampus(campusid);
 

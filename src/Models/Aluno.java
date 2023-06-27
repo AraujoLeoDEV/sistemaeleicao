@@ -8,6 +8,8 @@ public class Aluno extends Eleitor {
         this.matricula = matricula;
     }
 
+
+
     @Override
     public String getLogin() {
         return this.matricula;

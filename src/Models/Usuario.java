@@ -67,5 +67,6 @@ public abstract class Usuario {
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
+
     
 }

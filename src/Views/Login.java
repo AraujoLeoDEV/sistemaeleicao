@@ -6,7 +6,7 @@
 package Views;
 
 import Models.Usuario;
-import Services.Conexao;
+import Services.ConexaoMongo;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -179,13 +179,13 @@ public class Login extends javax.swing.JInternalFrame {
         String valorLogin = edtLogin.getText();
         String valorSenha = new String(edtSenha.getPassword());
         
-        Conexao con = new Conexao();
-
-        Usuario resultUsuario = con.fazerLogin(valorLogin, valorSenha);
-
+        //Conexao con = new Conexao();
+        ConexaoMongo conMongo = new ConexaoMongo();
+        Usuario resultUsuario = conMongo.fazerLogin(valorLogin, valorSenha);
+        System.err.println(resultUsuario);
         if (resultUsuario != null){
             this.usuarioLogin = resultUsuario;
-
+    
             try {
                 this.setClosed(true);
             } catch (PropertyVetoException ex) {

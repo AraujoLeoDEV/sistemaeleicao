@@ -10,7 +10,8 @@ import Models.Eleicao;
 import Models.Eleitor;
 import Models.Usuario;
 import Models.Voto;
-import Services.Conexao;
+import Services.ConexaoMongo;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -295,7 +296,7 @@ public class Votacao extends javax.swing.JInternalFrame {
     }
     
     public void inserirVoto(){
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
         
         if (con.usuarioVotou(getEleitor().getId(), new Integer(tblEleicoes.getModel().getValueAt(tblEleicoes.getSelectedRow(), 0).toString()))){
             JOptionPane.showMessageDialog(rootPane, "Você já votou nesta eleição, não é possivel votar novamente", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
@@ -325,7 +326,7 @@ public class Votacao extends javax.swing.JInternalFrame {
     }
     
     public void pesquisarEleicoes(){
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
    
     tblEleicoes.setModel(con.getTableEleicaoComCampus(eleitor.getCampusId()));
     tblEleicoes.removeColumn(tblEleicoes.getColumnModel().getColumn(0));
@@ -334,7 +335,7 @@ public class Votacao extends javax.swing.JInternalFrame {
     
     
     public void pesquisarCandidatos(){
-        Conexao con = new Conexao();
+        ConexaoMongo con = new ConexaoMongo();
         
     tblCandidatosElegiveis.setModel(con.getTableUsuariosCandidatos(Integer.valueOf(tblEleicoes.getModel().getValueAt(tblEleicoes.getSelectedRow(), 1).toString())));
     tblCandidatosElegiveis.removeColumn(tblCandidatosElegiveis.getColumnModel().getColumn(0));
